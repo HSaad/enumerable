@@ -75,13 +75,22 @@ module Enumerable
   end
 
   def my_map
+  	new_arr = []
+  	self.my_each do |item|
+  		new_arr << yield(item)
+  	end
+  	return new_arr
   end
 
   def my_inject	
+  	result = 1
+  	self.my_each do |item|
+  		result = yield(result, item)
+  	end
+  	return result
   end
+end
 
-  def multiply_els
-  end
-
-  
+def multiply_els(array)
+  	array.my_inject{ |product, n| product * n}
 end
